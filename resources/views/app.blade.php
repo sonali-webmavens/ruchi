@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Mini Database </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="jumbotron text-center">
+  <h1> Mini Database </h1>
+  <p> Data of Companies and Employees</p> 
+</div>
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a href="{{ route('home') }}">Home</a></li>
+      <li><a href="{{ route('about') }}">About Us</a></li>
+      <li><a href="{{ route('contact') }}">Contact Us</a></li>
+
+      @guest
+      <li><a href="{{ route('login') }}">Login</a></li>
+      @endguest
+
+      @auth
+      <li><a href="{{ route('companies.index') }}">Companies</a></li>
+      <li><a href="{{ route('employees.index')}}">Employees</a></li>
+      <li><a href="#" onclick="document.getElementById('logout-form').submit()">Log Out</a></li>
+      <form method="POST" action="{{ route('logout')}}" id="logout-form">
+        @csrf
+      </form>
+      @endauth
+    </ul>
+  </div>
+</nav>
+ 
+@yield('content')
+</body>
+</html>
