@@ -4,6 +4,16 @@
 <div class="container">
   
     <h2 class="card-header">New Employee</h2>
+      @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <form action="{{ route('employees.store') }}" method="POST">
       @csrf
       First Name:
