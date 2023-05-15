@@ -19,7 +19,7 @@
         <td>{{ $company->website ?? ''}}</td>
         <td>
           @if($company->logo != null)
-          <img src="{{ asset($company->logo ?? '') }}" height="100" width="100" alt="image">
+          <img src="{{ asset('storage/'.$company->logo) ?? '' }}" height="100" width="100" alt="image">
           @endif
          </td>
         <td>
