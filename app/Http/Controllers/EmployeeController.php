@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Employee;
+use App\Http\Requests\StoreEmployeeRequest;
 
 
 class EmployeeController extends Controller
@@ -17,7 +18,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = Employee::all();
+        $employees = Employee::orderBy('id','desc')->paginate(10);
         return view('employees.index',compact('employees'));
     }
 
@@ -38,11 +39,11 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
         Employee::create([
-            'first_name' => $request->fname,
-            'last_name' => $request->lname,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'company_id' => $request->company_id,
             'email' => $request->email,
             'phone' => $request->phone
@@ -81,12 +82,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreEmployeeRequest $request, $id)
     {
         $employee = employee::find($id);
         $employee->update([
-            'first_name' => $request->fname,
-            'last_name' => $request->lname,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
             'email' => $request->email,
             'phone' => $request->phone,
             'company_id' => $request->company_id

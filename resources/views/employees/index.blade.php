@@ -14,11 +14,11 @@
       </tr>
       @foreach($employees as $employee)
       <tr>
-        <td>{{ $employee->first_name }} {{ $employee->last_name }}</td>
-        <td>{{ $employee->email }}</td>
-        <td>{{ $employee->phone }}</td>
+        <td>{{ $employee->first_name ?? '' }} {{ $employee->last_name ?? '' }}</td>
+        <td>{{ $employee->email ?? ''}}</td>
+        <td>{{ $employee->phone ?? ''}}</td>
         <td>
-          {{ $employee->company->name }}
+                   {{ $employee->company->name ?? '' }}
         </td>
         <td>
           <a href="{{ route('employees.edit',$employee->id) }}" class="btn btn-primary">Edit</a>
@@ -31,5 +31,9 @@
       </tr>
       @endforeach
   </table>
+<div class="row" style="text-align: center;">
+ {{ $employees->links() }}
+</div>
+
 </div>
 @endsection

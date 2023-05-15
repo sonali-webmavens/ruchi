@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCompanyRequest;
 
 class CompanyController extends Controller
 {
@@ -16,7 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
+        $companies = Company::orderBy('id','desc')->paginate(10);
         return view('companies.index',compact('companies'));
     }
 
@@ -36,13 +37,24 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request)
     {
-        company::create([
+        if($request->photo == null ){
+           company::create([
             'name' => $request->name,
             'email' => $request->email,
             'website' => $request->website,
         ]);
+        }
+        else{
+        $path = $request->file('photo')->store('photos','public');
+        company::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'website' => $request->website,
+            'logo' => $path,
+        ]);
+         }        
         return redirect()->route('companies.index');
     }
 
@@ -76,14 +88,20 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCompanyRequest $request, $id)
     {
         $company = company::find($id);
-        $company->update([
+        if($request->photo == null ){
+           $path = $company->logo;
+        }
+        else{
+        $path = $request->file('photo')->store('photos','public');
+         }
+       $company->update([
             'name'=>$request->name,
             'email'=>$request->email,
             'website'=>$request->website,
-            /*'logo'=>$request->logo*/
+            'logo'=>$path,
         ]);
         return redirect()->route('companies.index');
     }

@@ -14,10 +14,14 @@
       </tr>
       @foreach($companies as $company)
       <tr>
-        <td>{{ $company->name }}</td>
-        <td>{{ $company->email }}</td>
-        <td>{{ $company->website }}</td>
-        <td>{{ $company->logo }}</td>
+        <td>{{ $company->name ?? ''}}</td>
+        <td>{{ $company->email ?? ''}}</td>
+        <td>{{ $company->website ?? ''}}</td>
+        <td>
+          @if($company->logo != null)
+          <img src="{{ asset($company->logo ?? '') }}" height="100" width="100" alt="image">
+          @endif
+         </td>
         <td>
           <a href="{{ route('companies.edit',$company->id) }}" class="btn btn-primary">Edit</a>
           <form action="{{ route('companies.destroy',$company->id) }}" method="POST" style="display: inline;">
@@ -29,5 +33,10 @@
       </tr>
       @endforeach
   </table>
+  
+<div class="row" style="text-align: center;">
+ {{ $companies->links() }}
+</div>
+
 </div>
 @endsection
