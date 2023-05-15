@@ -8,10 +8,10 @@
     <form action="{{ route('employees.store') }}" method="POST">
       @csrf
       First Name:
-      <input type="text" name="first_name" class="form-control" value="{{ old('first_name')}}" >
+      <input type="text" name="first_name" class="form-control" value="{{ old('first_name')}}" required>
       <br>
       Last Name:
-      <input type="text" name="last_name" class="form-control" value="{{ old('last_name')}}">
+      <input type="text" name="last_name" class="form-control" value="{{ old('last_name')}}" required>
       <br>
       Choose Company:
       <select class="form-control" name="company_id">

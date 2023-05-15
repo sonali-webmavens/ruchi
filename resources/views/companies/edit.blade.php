@@ -8,7 +8,7 @@
       @method('PUT')
       @csrf
       Name:
-      <input type="text" name="name" value="{{ $company->name ?? ''}}" class="form-control">
+      <input type="text" name="name" value="{{ $company->name ?? ''}}" class="form-control" required>
       <br>
       Email:
       <input type="text" name="email" value="{{ $company->email ?? ''}}" class="form-control">

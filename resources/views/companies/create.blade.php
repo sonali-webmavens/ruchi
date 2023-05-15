@@ -9,7 +9,7 @@
     <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
       Name:
-      <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+      <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
       <br>
       Email:
       <input type="text" name="email" class="form-control" value="{{ old('email') }}">
