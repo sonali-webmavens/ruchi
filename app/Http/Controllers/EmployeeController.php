@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Employee;
 use App\Http\Requests\StoreEmployeeRequest;
+use DataTables;
+
 
 
 class EmployeeController extends Controller
@@ -16,12 +18,24 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $employees = Employee::orderBy('id','desc')->paginate(10);
-        return view('employees.index',compact('employees'));
+  
+public function index(request $request)
+    {   
+        if($request->ajax()){
+            $employees = Employee::with('company')->select('id','first_name','last_name','company_id','email','phone')->get();
+            return datatables()->of($employees)
+            ->addColumn('company_name', function($row){
+                $company_name = $row->company->name ?? '' ;
+                return $company_name;
+             })
+            ->addColumn('action', 'employees.action')
+            ->rawColumns(['action'])
+            ->addIndexColumn()
+            ->make(true);
     }
 
+        return view('employees.index');
+    }
     /**
      * Show the form for creating a new resource.
      *

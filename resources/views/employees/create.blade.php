@@ -1,4 +1,4 @@
- @extends('app')
+ @extends('layouts.admin')
 
  @section('content')
 <div class="container">
@@ -13,7 +13,7 @@
       Last Name:
       <input type="text" name="last_name" class="form-control" value="{{ old('last_name')}}" required>
       <br>
-      Choose Company:
+      Company:
       <select class="form-control" name="company_id">
         <option value=""> Select Company </option>
         @foreach($companies as $company)

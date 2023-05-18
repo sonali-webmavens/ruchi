@@ -1,4 +1,4 @@
- @extends('app')
+ @extends('layouts.admin')
 
  @section('content')
 <div class="container">
@@ -24,6 +24,5 @@
       <input type="submit" value="Save" class="btn btn-primary">
 </form>
 @endsection
-
 
 

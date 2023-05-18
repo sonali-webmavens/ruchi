@@ -1,17 +1,23 @@
- @extends('app')
+ @extends('layouts.admin')
+
+@section('styles')
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
+@endsection
 
  @section('content')
 <div class="container">
 <a class="btn btn-success" href="{{ route('companies.create') }}">Create New Company</a>
-  <table class="table">
+  <table class="table" id="pTable">
     <h2 class="card-header">Companies List</h2>
-      <tr>
+      <thead>
         <th>Name</th>
         <th>Email Id</th>
         <th>Website</th>
         <th>Logo</th>
         <th>Action</th>
-      </tr>
+      </thead>
+      <tbody>
       @foreach($companies as $company)
       <tr>
         <td>{{ $company->name ?? ''}}</td>
@@ -32,11 +38,19 @@
         </td>
       </tr>
       @endforeach
+    </tbody>
   </table>
-  
-<div class="row" style="text-align: center;">
- {{ $companies->links() }}
 </div>
 
-</div>
+@section('javascripts')
+<!--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('#pTable').DataTable();
+});
+</script>
 @endsection
+
+@endsection
+

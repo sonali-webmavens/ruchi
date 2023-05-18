@@ -1,9 +1,8 @@
-@extends('app')
+@extends('layouts.admin')
 
  @section('content')
 <div class="container">
-  <div class="row">
-      <h2> Contact Us </h2>
-  </div>
+      <h2 style="text-align:center;">Contact Us </h2>
+
 </div>
 @endsection
