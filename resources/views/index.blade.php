@@ -2,6 +2,6 @@
 
  @section('content')
 <div class="container">
-<h1 style="text-align:center;"> Welcome </h1>
+<h1 style="text-align:center;">@lang('auth.welcome') </h1>
 </div>
 @endsection

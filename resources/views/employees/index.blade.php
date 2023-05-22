@@ -7,17 +7,18 @@
 
  @section('content')
 <div class="container">
-<a class="btn btn-success" href="{{ route('employees.create') }}">Add New Employee</a>
+<a class="btn btn-success" href="{{ route('employees.create', app()->getLocale()) }}">@lang('auth.add_employee')</a>
   <table class="table" id="pTable">
-    <h2 class="card-header">Employees List</h2>
+    <h2 class="card-header">@lang('auth.employee_list')
+</h2>
     <thead>
       <tr>
-        <th>first_name</th>
-        <th>last_name</th>
-        <th>email</th>
-        <th>phone</th>
-        <th>company_name</th>
-        <th>Action</th>
+        <th>@lang('auth.first_name')</th>
+        <th>@lang('auth.last_name')</th>
+        <th>@lang('auth.email')</th>
+        <th>@lang('auth.phone')</th>
+        <th>@lang('auth.company_name')</th>
+        <th>@lang('auth.action')</th>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +41,7 @@ headers: {
     var table = $('#pTable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('employees.index') }}",
+        ajax: "{{ route('employees.index', app()->getLocale()) }}",
         columns: [
             {data: 'first_name',name: 'first_name'},
             {data: 'last_name',name: 'last_name'},

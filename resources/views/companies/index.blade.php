@@ -7,15 +7,15 @@
 
  @section('content')
 <div class="container">
-<a class="btn btn-success" href="{{ route('companies.create') }}">Create New Company</a>
+<a class="btn btn-success" href="{{ route('companies.create', app()->getLocale()) }}">@lang('auth.add_company')</a>
   <table class="table" id="pTable">
-    <h2 class="card-header">Companies List</h2>
+    <h2 class="card-header">@lang('auth.company_list')</h2>
       <thead>
-        <th>Name</th>
-        <th>Email Id</th>
-        <th>Website</th>
-        <th>Logo</th>
-        <th>Action</th>
+        <th>@lang('auth.name')</th>
+        <th>@lang('auth.email')</th>
+        <th>@lang('auth.website')</th>
+        <th>@lang('auth.logo')</th>
+        <th>@lang('auth.action')</th>
       </thead>
       <tbody>
       @foreach($companies as $company)
@@ -29,11 +29,12 @@
           @endif
          </td>
         <td>
-          <a href="{{ route('companies.edit',$company->id) }}" class="btn btn-primary">Edit</a>
-          <form action="{{ route('companies.destroy',$company->id) }}" method="POST" style="display: inline;">
+          
+          <a href="{{ route('companies.edit',['locale' => app()->getLocale(), $company->id]) }}" class="btn btn-primary">@lang('auth.edit')</a>
+          <form action="{{ route('companies.destroy',['locale' => app()->getLocale(), $company->id]) }}" method="POST" style="display: inline;">
             @method('DELETE')
             @csrf
-            <input type="submit" name="delete" class="btn btn-danger" value="delete" onclick="return confirm('Are you sure...??')">
+            <input type="submit" name="delete" class="btn btn-danger" value="@lang('auth.delete')" onclick="return confirm('@lang('auth.are_you_sure')')">
           </form>
         </td>
       </tr>

@@ -62,7 +62,7 @@ public function index(request $request)
             'email' => $request->email,
             'phone' => $request->phone
         ]);
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index', app()->getLocale());
     }
 
     /**
@@ -106,7 +106,7 @@ public function index(request $request)
             'phone' => $request->phone,
             'company_id' => $request->company_id
         ]);
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index', app()->getLocale());
     }
 
     /**
@@ -120,6 +120,6 @@ public function index(request $request)
         $employee = employee::find($id);
         $employee->delete();
 
-        return redirect()->route('employees.index');
+        return redirect()->route('employees.index', app()->getLocale());
     }
 }

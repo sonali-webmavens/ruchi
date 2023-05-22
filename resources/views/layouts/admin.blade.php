@@ -25,24 +25,33 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('home') }}" class="nav-link">Home</a>
+        <a href="{{ route('home', app()->getLocale()) }}" class="nav-link">@lang('auth.home')</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('about') }}" class="nav-link">About Us</a>
+        <a href="{{ route('about', app()->getLocale()) }}" class="nav-link">@lang('auth.about')</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('contact') }}" class="nav-link">Contact Us</a>
+        <a href="{{ route('contact', app()->getLocale()) }}" class="nav-link">@lang('auth.contact')</a>
       </li>
     </ul>
+<div class="dropdown navbar-nav ml-auto" style="float: right;">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+{{ app()->getLocale() == 'es'? 'Spanish':'English' }}
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{{ url(app()->getLocale() == 'es'? 'en':'es') }}">{{ app()->getLocale() == 'es'? 'English':'Spanish' }}
+</a>
+  </div>
+</div>
   </nav>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="{{ route('home', app()->getLocale()) }}" class="brand-link">
       <img src="/vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Mini Database</span>
+      <span class="brand-text font-weight-light">@lang('auth.project_name')</span>
     </a>
 
     <!-- Sidebar -->
@@ -70,62 +79,64 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                Basic Information
+                @lang('auth.basic')
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
             	<li class="nav-item">
-                <a href="{{ route('home') }}" class="nav-link">
+                <a href="{{ route('home', app()->getLocale()) }}" class="nav-link">
                   <i class="fa fa-home nav-icon"></i>
-                  <p>Home</p>
+                  <p>@lang('auth.home')</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('about') }}" class="nav-link">
+                <a href="{{ route('about', app()->getLocale()) }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>About Us</p>
+                  <p>@lang('auth.about')</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('contact') }}" class="nav-link">
+                <a href="{{ route('contact', app()->getLocale()) }}" class="nav-link">
                   <i class="far fa-address-book nav-icon"></i>
-                  <p>Contact Us</p>
+                  <p>@lang('auth.contact')</p>
                 </a>
               </li>
             </ul>
           </li>
           @guest
           <li class="nav-item">
-            <a href="{{ route('login') }}" class="nav-link">
+            <a href="{{ route('login', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fa fa-sign-in"></i>
               <p>
-                Login
+                @lang('auth.login')
               </p>
             </a>
           </li>
           @endguest
           @auth
           <li class="nav-item">
-            <a href="{{ route('companies.index') }}" class="nav-link">
+            <a href="{{ route('companies.index', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Companies
+                @lang('auth.companies')
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('employees.index') }}" class="nav-link">
+            <a href="{{ route('employees.index', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                Employees
+                @lang('auth.employees')
               </p>
             </a>
           </li>
           <li class="nav-item"> 
               <i class="nav-icon fa fa-sign-out"></i>
-            <a href="#" onclick="document.getElementById('logout-form').submit()">Log Out</a></li>
-      <form method="POST" action="{{ route('logout')}}" id="logout-form">
+            <a href="#" onclick="document.getElementById('logout-form').submit()">@lang('auth.logout')
+            </a>
+          </li>
+      <form method="POST" action="{{ route('logout', app()->getLocale())}}" id="logout-form">
         @csrf
       </form>
          @endauth
@@ -158,7 +169,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- Default to the left -->
-    <strong>Copyright &copy; {{ date('Y') }} <a href="https://adminlte.io">Mini Database</a>.</strong> All rights reserved.
+    <strong>      @lang('auth.footer1') &copy; {{ date('Y') }} <a href="https://adminlte.io">@lang('auth.project_name')</a>.</strong>       @lang('auth.footer2')
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -174,4 +185,5 @@
 @yield('javascripts')
 
 </body>
+
 </html>

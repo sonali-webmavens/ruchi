@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Company;
 use App\Models\User;
 use App\Models\Employee;
-
+use App;
 
 class HomeController extends Controller
 {
@@ -18,4 +18,5 @@ class HomeController extends Controller
 
         return view('index', compact('companies','employees'));
     }
+
 }

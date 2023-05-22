@@ -3,23 +3,23 @@
  @section('content')
 <div class="container">
 
-    <h2 class="card-header">Edit Company's Data</h2>
-    <form action="{{ route('companies.update',$company->id) }}" method="POST" enctype="multipart/form-data">
+    <h2 class="card-header">@lang('auth.edit_company')</h2>
+    <form action="{{ route('companies.update',['locale' => app()->getLocale(), $company->id]) }}" method="POST" enctype="multipart/form-data">
       @method('PUT')
       @csrf
-      Name:
+      @lang('auth.name'):
       <input type="text" name="name" value="{{ $company->name ?? ''}}" class="form-control" required>
       <br>
-      Email:
+      @lang('auth.email'):
       <input type="text" name="email" value="{{ $company->email ?? ''}}" class="form-control">
       <br>
-      Website:
+      @lang('auth.website'):
       <input type="text" name="website" value="{{ $company->website ?? ''}}" class="form-control">
       <br>
-      Logo:
-        <input type="file" name="photo" class="form-control" value="{{ asset($company->logo ?? '') }}"> <span style="color:red"> Image minium height=100 and width=100. </span>
+      @lang('auth.logo'):
+        <input type="file" name="photo" class="form-control" value="{{ asset($company->logo ?? '') }}"> <span style="color:red">@lang('auth.img_details')</span>
       <br>
       <br>
-      <input type="submit" value="Update" class="btn btn-primary">
+      <input type="submit" value="@lang('auth.update'):" class="btn btn-primary">
 </form>
 @endsection
