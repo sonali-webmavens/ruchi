@@ -25,13 +25,13 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('home', app()->getLocale()) }}" class="nav-link">@lang('auth.home')</a>
+        <a href="{{ route('home', app()->getLocale()) }}" class="nav-link">@lang('index.home')</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('about', app()->getLocale()) }}" class="nav-link">@lang('auth.about')</a>
+        <a href="{{ route('about', app()->getLocale()) }}" class="nav-link">@lang('index.about')</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('contact', app()->getLocale()) }}" class="nav-link">@lang('auth.contact')</a>
+        <a href="{{ route('contact', app()->getLocale()) }}" class="nav-link">@lang('index.contact')</a>
       </li>
     </ul>
 <div class="dropdown navbar-nav ml-auto" style="float: right;">
@@ -51,7 +51,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('home', app()->getLocale()) }}" class="brand-link">
       <img src="/vendor/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">@lang('auth.project_name')</span>
+      <span class="brand-text font-weight-light">@lang('index.project_name')</span>
     </a>
 
     <!-- Sidebar -->
@@ -79,7 +79,7 @@
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
-                @lang('auth.basic')
+                @lang('index.basic')
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -87,19 +87,19 @@
             	<li class="nav-item">
                 <a href="{{ route('home', app()->getLocale()) }}" class="nav-link">
                   <i class="fa fa-home nav-icon"></i>
-                  <p>@lang('auth.home')</p>
+                  <p>@lang('index.home')</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('about', app()->getLocale()) }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>@lang('auth.about')</p>
+                  <p>@lang('index.about')</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('contact', app()->getLocale()) }}" class="nav-link">
                   <i class="far fa-address-book nav-icon"></i>
-                  <p>@lang('auth.contact')</p>
+                  <p>@lang('index.contact')</p>
                 </a>
               </li>
             </ul>
@@ -109,7 +109,7 @@
             <a href="{{ route('login', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fa fa-sign-in"></i>
               <p>
-                @lang('auth.login')
+                @lang('index.login')
               </p>
             </a>
           </li>
@@ -119,7 +119,7 @@
             <a href="{{ route('companies.index', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                @lang('auth.companies')
+                @lang('index.companies')
               </p>
             </a>
           </li>
@@ -127,13 +127,13 @@
             <a href="{{ route('employees.index', app()->getLocale()) }}" class="nav-link">
               <i class="nav-icon fas fa-list"></i>
               <p>
-                @lang('auth.employees')
+                @lang('index.employees')
               </p>
             </a>
           </li>
           <li class="nav-item"> 
               <i class="nav-icon fa fa-sign-out"></i>
-            <a href="#" onclick="document.getElementById('logout-form').submit()">@lang('auth.logout')
+            <a href="#" onclick="document.getElementById('logout-form').submit()">@lang('index.logout')
             </a>
           </li>
       <form method="POST" action="{{ route('logout', app()->getLocale())}}" id="logout-form">
@@ -169,7 +169,7 @@
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- Default to the left -->
-    <strong>      @lang('auth.footer1') &copy; {{ date('Y') }} <a href="https://adminlte.io">@lang('auth.project_name')</a>.</strong>       @lang('auth.footer2')
+    <strong>@lang('index.footer1') &copy; {{ date('Y') }} <a href="https://adminlte.io">@lang('index.project_name')</a>.</strong>       @lang('index.footer2')
   </footer>
 </div>
 <!-- ./wrapper -->

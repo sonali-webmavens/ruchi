@@ -44,7 +44,7 @@ class WelcomeEmailNotification extends Notification
         return (new MailMessage)
                     ->line($this->company['name'].'...! Welcome to mini database')
                     ->line('Name: '.$this->company['name'])
-                    ->line('Email: '.$this->company['email'])                  
+                    ->line('Email: '.$this->company['email'])             
                     ->line('Website: '.$this->company['website'])
                     ->attach(public_path('storage/'.$this->company['logo'])) 
                     ->line('Thank you for using our application!');

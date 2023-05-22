@@ -7,15 +7,15 @@
 
  @section('content')
 <div class="container">
-<a class="btn btn-success" href="{{ route('companies.create', app()->getLocale()) }}">@lang('auth.add_company')</a>
+<a class="btn btn-success" href="{{ route('companies.create', app()->getLocale()) }}">@lang('index.add_company')</a>
   <table class="table" id="pTable">
-    <h2 class="card-header">@lang('auth.company_list')</h2>
+    <h2 class="card-header">@lang('index.company_list')</h2>
       <thead>
-        <th>@lang('auth.name')</th>
-        <th>@lang('auth.email')</th>
-        <th>@lang('auth.website')</th>
-        <th>@lang('auth.logo')</th>
-        <th>@lang('auth.action')</th>
+        <th>@lang('index.name')</th>
+        <th>@lang('index.email')</th>
+        <th>@lang('index.website')</th>
+        <th>@lang('index.logo')</th>
+        <th>@lang('index.action')</th>
       </thead>
       <tbody>
       @foreach($companies as $company)
@@ -30,11 +30,11 @@
          </td>
         <td>
           
-          <a href="{{ route('companies.edit',['locale' => app()->getLocale(), $company->id]) }}" class="btn btn-primary">@lang('auth.edit')</a>
+          <a href="{{ route('companies.edit',['locale' => app()->getLocale(), $company->id]) }}" class="btn btn-primary">@lang('index.edit')</a>
           <form action="{{ route('companies.destroy',['locale' => app()->getLocale(), $company->id]) }}" method="POST" style="display: inline;">
             @method('DELETE')
             @csrf
-            <input type="submit" name="delete" class="btn btn-danger" value="@lang('auth.delete')" onclick="return confirm('@lang('auth.are_you_sure')')">
+            <input type="submit" name="delete" class="btn btn-danger" value="@lang('index.delete')" onclick="return confirm('@lang('index.are_you_sure')')">
           </form>
         </td>
       </tr>
@@ -44,7 +44,6 @@
 </div>
 
 @section('javascripts')
-<!--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script>
 $(document).ready(function() {

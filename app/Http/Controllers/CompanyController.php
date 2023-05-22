@@ -19,7 +19,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::orderBy('id','desc')->get(); //orderBy('id','desc'); ->paginate(10)
+        $companies = Company::orderBy('id','desc')->get(); 
         return view('companies.index',compact('companies'));
     }
 
@@ -117,7 +117,6 @@ $company->notify(new WelcomeEmailNotification($company));
      */
     public function destroy($id)
     {
-        //dd($id);
         $company =company::find($id);
         $company->delete();
 

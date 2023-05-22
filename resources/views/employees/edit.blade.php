@@ -4,17 +4,17 @@
 <div class="container">
  
 
-    <h2 class="card-header">@lang('auth.edit_employee')</h2>
+    <h2 class="card-header">@lang('index.edit_employee')</h2>
     <form action="{{ route('employees.update',['locale' => app()->getLocale(), $employee->id]) }}" method="POST" enctype="multipart/form-data">
     	@method('PUT')
       @csrf
-      @lang('auth.first_name'):
+      @lang('index.first_name'):
       <input type="text" name="first_name" class="form-control" value="{{ $employee->first_name ?? ''}}" required>
       <br>
-      @lang('auth.last_name'):
+      @lang('index.last_name'):
       <input type="text" name="last_name" class="form-control" value="{{ $employee->last_name ?? ''}}" required>
       <br>
-      @lang('auth.company_name'):
+      @lang('index.company_name'):
       <select class="form-control" name="company_id">
         <option value=""> Select Company </option>
         @foreach($companies as $company)
@@ -22,13 +22,13 @@
         @endforeach
       </select>
       <br>
-      @lang('auth.email'):
+      @lang('index.email'):
       <input type="email" name="email" value="{{ $employee->email ?? ''}}" class="form-control">
       <br>
-      @lang('auth.phone'):
+      @lang('index.phone'):
       <input type="number" name="phone" value="{{ $employee->phone ?? ''}}" class="form-control">
       <br>
       <br>
-      <input type="submit" value="@lang('auth.update')" class="btn btn-primary">
+      <input type="submit" value="@lang('index.update')" class="btn btn-primary">
 </form>
 @endsection

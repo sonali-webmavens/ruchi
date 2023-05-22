@@ -7,18 +7,18 @@
 
  @section('content')
 <div class="container">
-<a class="btn btn-success" href="{{ route('employees.create', app()->getLocale()) }}">@lang('auth.add_employee')</a>
+<a class="btn btn-success" href="{{ route('employees.create', app()->getLocale()) }}">@lang('index.add_employee')</a>
   <table class="table" id="pTable">
-    <h2 class="card-header">@lang('auth.employee_list')
+    <h2 class="card-header">@lang('index.employee_list')
 </h2>
     <thead>
       <tr>
-        <th>@lang('auth.first_name')</th>
-        <th>@lang('auth.last_name')</th>
-        <th>@lang('auth.email')</th>
-        <th>@lang('auth.phone')</th>
-        <th>@lang('auth.company_name')</th>
-        <th>@lang('auth.action')</th>
+        <th>@lang('index.first_name')</th>
+        <th>@lang('index.last_name')</th>
+        <th>@lang('index.email')</th>
+        <th>@lang('index.phone')</th>
+        <th>@lang('index.company_name')</th>
+        <th>@lang('index.action')</th>
       </tr>
     </thead>
     <tbody>
@@ -29,7 +29,6 @@
 
 </div>
 @section('javascripts')
-<!--<script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
