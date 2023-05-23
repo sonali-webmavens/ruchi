@@ -62,6 +62,7 @@ public function index(request $request)
             'email' => $request->email,
             'phone' => $request->phone
         ]);
+        
         return redirect()->route('employees.index', app()->getLocale());
     }
 
@@ -106,6 +107,7 @@ public function index(request $request)
             'phone' => $request->phone,
             'company_id' => $request->company_id
         ]);
+
         return redirect()->route('employees.index', app()->getLocale());
     }
 

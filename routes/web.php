@@ -28,11 +28,6 @@ Route::group([
 ], function(){
    Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
  
-
-
-
-//Route::get('/',action:'App\Http\Controllers\HomeController@index')->name('home');
-
 Route::get('contact',function(){
     return view('contact');
 })->name('contact');

@@ -41,14 +41,16 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        if($request->photo == null ){
+        if($request->photo == null )
+        {
         $company = company::create([
             'name' => $request->name,
             'email' => $request->email,
             'website' => $request->website,
         ]);
         }
-        else{
+        else
+        {
         $path = $request->file('photo')->store('photos','public');
         $company = company::create([
             'name' => $request->name,
@@ -56,9 +58,9 @@ class CompanyController extends Controller
             'website' => $request->website,
             'logo' => $path,
         ]);
-         }   
-$company->notify(new WelcomeEmailNotification($company));
- return redirect()->route('companies.index', app()->getLocale());
+        }   
+        $company->notify(new WelcomeEmailNotification($company));
+        return redirect()->route('companies.index', app()->getLocale());
     }
 
     /**
@@ -99,7 +101,7 @@ $company->notify(new WelcomeEmailNotification($company));
         }
         else{
         $path = $request->file('photo')->store('photos','public');
-         }
+        }
        $company->update([
             'name'=>$request->name,
             'email'=>$request->email,
