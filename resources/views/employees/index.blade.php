@@ -1,39 +1,61 @@
- @extends('app')
+ @extends('layouts.admin')
+
+@section('styles')
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet"/>
+@endsection
 
  @section('content')
 <div class="container">
-<a class="btn btn-success" href="{{ route('employees.create') }}">Add New Employee</a>
-  <table class="table">
-    <h2 class="card-header">Employees List</h2>
+<a class="btn btn-success" href="{{ route('employees.create', app()->getLocale()) }}">@lang('index.add_employee')</a>
+  <table class="table" id="pTable">
+    <h2 class="card-header">@lang('index.employee_list')
+</h2>
+    <thead>
       <tr>
-        <th>Name</th>
-        <th>Email Id</th>
-        <th>Phone</th>
-        <th>Company Name</th>
-        <th>Action</th>
+        <th>@lang('index.first_name')</th>
+        <th>@lang('index.last_name')</th>
+        <th>@lang('index.email')</th>
+        <th>@lang('index.phone')</th>
+        <th>@lang('index.company_name')</th>
+        <th>@lang('index.action')</th>
       </tr>
-      @foreach($employees as $employee)
-      <tr>
-        <td>{{ $employee->first_name ?? '' }} {{ $employee->last_name ?? '' }}</td>
-        <td>{{ $employee->email ?? ''}}</td>
-        <td>{{ $employee->phone ?? ''}}</td>
-        <td>
-                   {{ $employee->company->name ?? '' }}
-        </td>
-        <td>
-          <a href="{{ route('employees.edit',$employee->id) }}" class="btn btn-primary">Edit</a>
-         <form action="{{ route('employees.destroy',$employee->id) }}" method="POST" style="display:inline;">
-          @method('DELETE')
-          @csrf
-          <input type="submit" name="delete" onclick="return confirm('Are you sure..?')" class="btn btn-danger" value="Delete">
-         </form>
-        </td>
-      </tr>
-      @endforeach
+    </thead>
+    <tbody>
+     
+    </tbody>
   </table>
-<div class="row" style="text-align: center;">
- {{ $employees->links() }}
-</div>
+
 
 </div>
+@section('javascripts')
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$.ajaxSetup({
+headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+    var table = $('#pTable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('employees.index', app()->getLocale()) }}",
+        columns: [
+            {data: 'first_name',name: 'first_name'},
+            {data: 'last_name',name: 'last_name'},
+            {data: 'email',name: 'email'},
+            {data: 'phone',name: 'phone'},
+            {data: 'company_name',name: 'company_name'},
+            {data: 'action', name: 'action'},
+        ]
+    });
+  });
+
+</script>
 @endsection
+
+
+@endsection
+
+    

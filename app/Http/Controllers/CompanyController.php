@@ -7,6 +7,8 @@ use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCompanyRequest;
+use App\Notifications\WelcomeEmailNotification;
+use Illuminate\Support\Facades\Notification;
 
 class CompanyController extends Controller
 {
@@ -17,7 +19,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::orderBy('id','desc')->paginate(10);
+        $companies = Company::orderBy('id','desc')->get(); 
         return view('companies.index',compact('companies'));
     }
 
@@ -39,23 +41,26 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        if($request->photo == null ){
-           company::create([
+        if($request->photo == null )
+        {
+        $company = company::create([
             'name' => $request->name,
             'email' => $request->email,
             'website' => $request->website,
         ]);
         }
-        else{
+        else
+        {
         $path = $request->file('photo')->store('photos','public');
-        company::create([
+        $company = company::create([
             'name' => $request->name,
             'email' => $request->email,
             'website' => $request->website,
             'logo' => $path,
         ]);
-         }        
-        return redirect()->route('companies.index');
+        }   
+        $company->notify(new WelcomeEmailNotification($company));
+        return redirect()->route('companies.index', app()->getLocale());
     }
 
     /**
@@ -96,14 +101,14 @@ class CompanyController extends Controller
         }
         else{
         $path = $request->file('photo')->store('photos','public');
-         }
+        }
        $company->update([
             'name'=>$request->name,
             'email'=>$request->email,
             'website'=>$request->website,
             'logo'=>$path,
         ]);
-        return redirect()->route('companies.index');
+        return redirect()->route('companies.index',app()->getLocale());
     }
 
     /**
@@ -117,6 +122,6 @@ class CompanyController extends Controller
         $company =company::find($id);
         $company->delete();
 
-        return redirect()->route('companies.index');
+        return redirect()->route('companies.index', app()->getLocale());
     }
 }

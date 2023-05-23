@@ -17,8 +17,17 @@ Route::get('welcome', function () {
     return view('welcome');
 });
 
-Route::get('/',action:'App\Http\Controllers\HomeController@index')->name('home');
 
+Route::get('/', function(){
+    return redirect(app()->getLocale());
+});
+
+Route::group([
+'prefix' => '{locale}',
+'middleware' => 'setlocale',
+], function(){
+   Route::get('/','App\Http\Controllers\HomeController@index')->name('home');
+ 
 Route::get('contact',function(){
     return view('contact');
 })->name('contact');
@@ -34,4 +43,5 @@ Auth::routes([
 Route::group(['middleware'=>'auth'], function(){
     Route::resource('companies','App\Http\Controllers\CompanyController');
     Route::resource('employees','App\Http\Controllers\EmployeeController');
+});
 });

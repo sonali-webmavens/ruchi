@@ -1,29 +1,29 @@
- @extends('app')
+ @extends('layouts.admin')
 
  @section('content')
 <div class="container">
   
-    <h2 class="card-header">New Company</h2>
+    <h2 class="card-header">@lang('index.new_company')</h2>
 
 
-    <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('companies.store', app()->getLocale()) }}" method="POST" enctype="multipart/form-data">
       @csrf
-      Name:
+      @lang('index.name'):
       <input type="text" name="name" class="form-control" value="{{ old('name') }}" required>
       <br>
-      Email:
+      @lang('index.email'):
       <input type="text" name="email" class="form-control" value="{{ old('email') }}">
       <br>
-      Website:
+      @lang('index.website'):
       <input type="text" name="website"  class="form-control" value="{{ old('website') }}">
       <br>
-      Logo:
-      <input type="file" name="photo" class="form-control" value="{{ old('photo') }}"><span style="color:red"> Image minium height=100 and width=100. </span>
+      @lang('index.logo'):
+      <input type="file" name="photo" class="form-control" value="{{ old('photo') }}"><span style="color:red">@lang('index.img_details')
+ </span>
       <br>
       <br>
-      <input type="submit" value="Save" class="btn btn-primary">
+      <input type="submit" value="@lang('index.save')" class="btn btn-primary">
 </form>
 @endsection
-
 
 
